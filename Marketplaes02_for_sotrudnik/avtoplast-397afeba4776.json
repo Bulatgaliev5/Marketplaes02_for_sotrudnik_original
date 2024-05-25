@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "avtoplast",
+  "private_key_id": "397afeba4776f7784d38a704b52fb633a1df5814",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCkIJUv33jk/YmR\nd4tqnwAx37wmNYvNd2/gHVGN4bqpd7Er/NbhKVmoY3iNWwv1zQI9HQ7tNdJeMb7t\neMvx3xaT/Lce5Yre8npnJf0xjGIvcI9BLZ6xL1CFmjmkcQ3/hv97+JPvAvYRPciD\n+TEtO+HOttd45sHjnGBeNZdnb8UiIWO0wNavG2dG8KxuthnkIiE5xByHC1qXm2gB\nlyc9xvtFgVqwcoKiTNxi0GGnl4FFQu5FdkQ2dzNvX0B3ETEVYaPrTRHOBEaP3yUF\nyNsQccGv7odJaZ96aWnu/DaZ5F4EU9fmO+60PF+YquOuhc08FNXgUDmNTq7wtjol\ndxt3LlVbAgMBAAECggEAN/bwSAmwhIy7ewHDZVDgVSFQW8sIZ8BhQo9cvr+I0b6B\niFlHwDFEZDm+4px4IJGOQN6Gt3YRzJKz4u+8wzXp0f5rRrrItqsB9+gpRNr0o+6C\nupver9ZNY7EqFJuERWx384LYlrhwxYJGvFGdZio0HjOUl6I/3Of2qEkn3lprYu5p\nAOlBsogr46JHebvGA1qf5ElhDCVbdp7ZS2MizVcLfZLPzydHzsDHdZiiN760i+k1\n8N5oRUwFYFbhEKidOYA0JX7KbZJP/8AgokgkQO6V9u/8uk76OeCeFSKtQ06Zx55U\nqlXuwbJxWQiu0nvULB2X7xdTUa437nO9Xz5Tc5I+wQKBgQDmLUZR+ioXM14dxNfo\ndwZ+NyshSrevuKoroS+DcrNuPap0TsJX5awxadWMEJy3qmJOUbhngX1Mg1pRqitg\nVpoXIaYbafh5CsTtsTGcsAA7p7adPCuMgvNmEFLBcZtwTf6eFQoKEdQV7zFR24ka\n9Ip5+0JUpQLW3fHv1LgUlCSsoQKBgQC2ilnZ7ZHNT+hY+2sFRknwEtDS8KVfsu//\n5jyQdktvAnmIItpNJjgk0oK2VZdt2XN8//vY4lZaZBsvwmWDX02P/62J9WvurAQR\nYnF6yBuSo4j3jfkpfXuVQbAEZjovIhKBNne50TxjmolMx2Xf+g6Ubp9dd4U63u7/\nwxa5PdDkewKBgF4WYak+zhe/upgGj48JoFDVcj7gkOc2X/EHqSldKHVGpbd3Pj+5\ntUJZlZ30aGs3LYoAI5XDu5kcFD5Phf2SSNhtu712+sdXnJnglXwMAXxhGOd64f5E\nxQOSZpGGQ9iLOSobRYhKM1xn8swYJhornbMw/rMk5F06ShwT4s8eo0MhAoGAc3tB\nbsqKRB56etjMEvEt05DDxb9ykAGPLhCFXktIW7lwE30hKE+2ky0OfrXVcCxykLEN\nrl86jELqpCNSv3LqieAR9MZr+vmeNTVXX3r7XqDRBPQvnl0BcyK0bYQS6UCf/ljs\nE4VYtBbPJ+C6BaGX2bXGYoY7pkvlXa8ZUCXYYsMCgYBFZ7Rx9bKjLht204PSR4uH\nlj6m5qdWxNh+bl1enuax2pOdPzAR7NTtiqErsP7MCSfHVuB4SXQeAjDqZymaDqhJ\nuWhs4mUhs2HrnlqAcae8qvvcnIxFLZPU7VKngVjabRrlN1yyLagQ74gEM5PybtT6\nCtuyOXz/NhPBemD+HnPv9Q==\n-----END PRIVATE KEY-----\n",
+  "client_email": "avtoplast@avtoplast.iam.gserviceaccount.com",
+  "client_id": "108499858803143775404",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/avtoplast%40avtoplast.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

@@ -1,0 +1,47 @@
+﻿<Window x:Class="Marketplaes02_for_sotrudnik.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Marketplaes02_for_sotrudnik"
+        mc:Ignorable="d"  Background="Azure"
+        MinHeight="600" MinWidth="1100" WindowState="Maximized"
+        Title="MainWindow" Height="600" Width="1100">
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid HorizontalAlignment="Stretch">
+            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Style="{DynamicResource StackPanelMenuItem}">
+                <!--<Border Grid.Row="0" Style="{DynamicResource BorderMenuItem}">
+                <Label Content="Главная" VerticalContentAlignment="Center" Style="{DynamicResource LabelMenuItem}"/>
+            </Border>-->
+            <Border Grid.Row="0" Style="{DynamicResource BorderMenuItem}" MouseLeftButtonDown="OpenPageGoods">
+                <Label Content="Товары" VerticalContentAlignment="Center" Style="{DynamicResource LabelMenuItem}"/>
+            </Border>
+            <Border Grid.Row="0" Style="{DynamicResource BorderMenuItem}" MouseLeftButtonDown="OpenPageOrders">
+                <Label Content="Заказы" VerticalContentAlignment="Center" Style="{DynamicResource LabelMenuItem}"/>
+            </Border>
+
+        </StackPanel>
+            <Border Margin="15" HorizontalAlignment="Right" Grid.Row="0" Style="{DynamicResource BorderMenuItem}" MouseLeftButtonDown="Exit">
+                <Label Content="Выход" VerticalContentAlignment="Center" Style="{DynamicResource LabelMenuItem}"/>
+            </Border>
+        </Grid>
+
+
+
+        <Grid Margin="15,0,15,0"  Grid.Row="1" Grid.Column="1">
+            <Frame Source="/View/ViewGoods.xaml" x:Name="Frame1" NavigationUIVisibility="Hidden"/>
+
+
+        </Grid>
+    </Grid>
+</Window>

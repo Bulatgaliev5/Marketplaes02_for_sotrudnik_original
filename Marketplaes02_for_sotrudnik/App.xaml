@@ -1,0 +1,222 @@
+﻿<Application x:Class="Marketplaes02_for_sotrudnik.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Marketplaes02_for_sotrudnik" 
+             StartupUri="View/ViewAuthorization.xaml">
+    
+    <Application.Resources>
+
+        <local:ImageConverter x:Key="ImageConverter" />
+        
+        <Style TargetType="Image">
+            <Setter Property="Width" Value="35"/>
+            <Setter Property="Height" Value="35"/>
+        </Style>
+        <Style TargetType="Image" x:Key="ImageTovari">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="300"/>
+        </Style>
+        <Style TargetType="Image" x:Key="IconDelete_Edit">
+            <Setter Property="Width" Value="25"/>
+            <Setter Property="Height" Value="25"/>
+        </Style>
+        <Style TargetType="StackPanel" x:Key="StackMenu">
+            <Setter Property="Background" Value="#aaa"/>
+        </Style>
+        <Style TargetType="StackPanel" x:Key="IconBack">
+            <Setter Property="Background" Value="White"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="GoodsName">
+            <Setter Property="Margin" Value="0,0,0,5"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="GoodsDesc">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Margin" Value="0,0,0,15"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="GoodsDiscount">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="GoodsCostOld">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="TextDecorations" Value="Strikethrough"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="GoodsCostNew">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="0,0,0,5"/>
+        </Style>
+        <Style TargetType="PasswordBox" x:Key="TextBoxRazmerPass">
+            <Setter Property="Width" Value="195"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        <Style TargetType="PasswordBox" x:Key="PassBoxRazmer">
+            <Setter Property="Width" Value="195"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        <Style TargetType="Label" x:Key="Title">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="0,0,0,7.5"/>
+        </Style>
+        <Style TargetType="Border" x:Key="BorderBtn">
+            <Setter Property="Background" Value="#fff"/>
+            <Setter Property="BorderBrush" Value="#777"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="0,0,0,5"/>
+            
+        </Style>
+
+        <Style TargetType="Border" x:Key="BorderGoods" BasedOn="{StaticResource BorderBtn}">
+            <Setter Property="Margin" Value="0,0,5,5"/>
+        </Style>
+        <Style TargetType="Border" x:Key="BorderTovari" BasedOn="{StaticResource BorderBtn}">
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+        <Style TargetType="Image" x:Key="ImageDel_Edit_Center">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="TextBlockVirovniv">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="TextBlockVirovnivTitle" BasedOn="{StaticResource TextBlockVirovniv}">
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        <Style TargetType="TextBox" x:Key="TextBoxRazmer">
+            <Setter Property="Width" Value="195"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+
+
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="195"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+
+        <Style TargetType="StackPanel" x:Key="AvtorizavStackPanel">
+            <Setter Property="Margin" Value="80,0,80,0"/>
+        </Style>
+        <Style TargetType="Border" x:Key="BorderBtn2" BasedOn="{StaticResource BorderBtn}">
+            <Setter Property="Background" Value="#eee"/>
+            <Setter Property="Margin" Value="0,5,0,0"/>
+            <Setter Property="Width" Value="300"/>
+        </Style>
+
+        <!--Новые стили-->
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+ 
+
+
+        <Style TargetType="StackPanel" x:Key="StackPanelMenuItem">
+            <Setter Property="Background" Value="LightCyan"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="15"/>
+        </Style>
+
+
+        <Style TargetType="Border" x:Key="BorderMenuItem">
+            <Setter Property="Background" Value="LightCyan"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="BorderThickness" Value="0.5"/>
+            <Setter Property="BorderBrush" Value="DeepSkyBlue"/>
+            <Setter Property="CornerRadius" Value="15"/>
+            <Setter Property="Margin" Value="5,0,5,0"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Width" Value="150"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="DeepSkyBlue"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+
+
+
+
+        <Style TargetType="Label" x:Key="LabelMenuItem">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="White"/>
+                    </Trigger>
+                </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Border" x:Key="BorderButton" BasedOn="{StaticResource BorderMenuItem}">
+            <Setter Property="Background" Value="LightCyan"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="BorderThickness" Value="0.5"/>
+            <Setter Property="BorderBrush" Value="DeepSkyBlue"/>
+            <Setter Property="CornerRadius" Value="15"/>
+            <Setter Property="Margin" Value="5,0,5,0"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Width" Value="150"/>
+        </Style>
+
+        <Style TargetType="Border" x:Key="BorderSelection" BasedOn="{StaticResource BorderButton}">
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Width" Value="auto"/>
+            <Setter Property="Background" Value="DeepSkyBlue"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="BorderThickness" Value="0.5"/>
+            <Setter Property="BorderBrush" Value="DeepSkyBlue"/>
+            <Setter Property="CornerRadius" Value="15"/>
+            <Setter Property="Margin" Value="5,0,5,0"/>
+            <Setter Property="Padding" Value="5"/>
+            
+        </Style>
+
+
+        <Style TargetType="Label" x:Key="LabelButton" >
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+
+
+        <Style TargetType="Border" x:Key="BorderImageGood">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="CornerRadius"  Value="15" />
+            <Setter Property="Background"  Value="Snow" />
+        </Style>
+
+
+        <Style TargetType="Grid" x:Key="GridImagelist">
+            <Setter Property="Background" Value="DeepSkyBlue"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="DeepSkyBlue"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Background" Value="Azure"/>
+        </Style>
+
+        <Style TargetType="Window">
+            <Setter Property="Background" Value="Azure"/>
+        </Style>
+        <Style TargetType="Page">
+            <Setter Property="Background" Value="Azure"/>
+        </Style>
+
+    </Application.Resources>
+    
+</Application>
+    
+
