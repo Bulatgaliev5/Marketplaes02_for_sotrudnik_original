@@ -32,10 +32,10 @@ namespace Marketplaes02_for_sotrudnik.BD
                 try
                 {
                     await con.OpenAsync();
-                    }
+                }
                 catch (MySqlException ex)
                 {
-                         MessageBox.Show("Не удалось подключиться серверу. Попробуйте попозже или же сообщите администратору: " + ex.Message);
+                         MessageBox.Show("Не удалось подключиться к серверу. Попробуйте попозже или же сообщите администратору: " + ex.Message);
 
                 }
 

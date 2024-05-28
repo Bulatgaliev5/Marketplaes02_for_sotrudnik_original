@@ -11,12 +11,21 @@ namespace Marketplaes02_for_sotrudnik.Model
     {
         Action<object> action;
 
-        public ActionCommand(Action<object> action) => this.action = action;
+        public ActionCommand(Action<object> action) 
+        {
+            this.action = action;
+        }
 
         public event EventHandler? CanExecuteChanged;
 
-        public bool CanExecute(object? parameter) => parameter != null;
+        public bool CanExecute(object? parameter) 
+        {
+          return  parameter != null;
+        } 
 
-        public void Execute(object? parameter) => action?.Invoke(parameter);
+        public void Execute(object? parameter) 
+        {
+            action?.Invoke(parameter);
+        }
     }
 }

@@ -9,6 +9,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <AvaloniaXaml Remove="Convert\**" />
+    <AvaloniaXaml Remove="Новая папка\**" />
+    <Compile Remove="Convert\**" />
+    <Compile Remove="Новая папка\**" />
+    <EmbeddedResource Remove="Convert\**" />
+    <EmbeddedResource Remove="Новая папка\**" />
+    <EntityDeploy Remove="Convert\**" />
+    <EntityDeploy Remove="Новая папка\**" />
+    <None Remove="Convert\**" />
+    <None Remove="Новая папка\**" />
+    <Page Remove="Convert\**" />
+    <Page Remove="Новая папка\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Icons\actions.png" />
     <None Remove="Icons\add_zakaz.png" />
     <None Remove="Icons\aktiv_zakaz.png" />
@@ -105,11 +120,6 @@
     <Resource Include="Icons\strelka_for_button.png" />
     <Resource Include="Icons\user.png" />
     <Resource Include="Icons\zagruzka.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Convert\" />
-    <Folder Include="Новая папка\" />
   </ItemGroup>
 
 </Project>
