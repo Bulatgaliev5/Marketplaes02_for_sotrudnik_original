@@ -1,7 +1,9 @@
 ﻿using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Net.Mime;
+using System.Windows.Media.Imaging;
 
 namespace Marketplaes02_for_sotrudnik.BD
 {
@@ -11,6 +13,9 @@ namespace Marketplaes02_for_sotrudnik.BD
         private int _port;
         private string _username;
         private string _password;
+
+
+
 
         public FileBase()
         {

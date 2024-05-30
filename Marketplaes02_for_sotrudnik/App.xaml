@@ -3,11 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Marketplaes02_for_sotrudnik" 
              StartupUri="View/ViewAuthorization.xaml">
-    
+
     <Application.Resources>
 
-        <local:ImageConverter x:Key="ImageConverter" />
-        
         <Style TargetType="Image">
             <Setter Property="Width" Value="35"/>
             <Setter Property="Height" Value="35"/>
