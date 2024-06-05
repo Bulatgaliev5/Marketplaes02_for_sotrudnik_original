@@ -222,7 +222,7 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
                 MyOrder_itemslist.Add(new MyOrder_items()
                 {
                     ID_goods = Convert.ToInt32(reader["ID_goods"]),
-                    Image = Convert.ToString(reader["ImageGood"]),
+                    Image = new FileBase().GetShareableImageLink(reader["ImageGood"].ToString()),
                     Name = Convert.ToString(reader["Name"]),
                     Total_Count = Convert.ToInt32(reader["Total_Count"]),
                     Total_Price_with_discount = Convert.ToSingle(reader["Total_Price_with_discount"]),

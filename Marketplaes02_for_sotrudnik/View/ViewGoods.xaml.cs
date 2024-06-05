@@ -128,7 +128,8 @@ namespace Marketplaes02_for_sotrudnik.View
 
         private void BorderUpdate(object sender, MouseButtonEventArgs e)
         {
-            Update();
+                Update();
+
         }
 
         private void OpenKartochkaGoods(object sender, MouseButtonEventArgs e)

@@ -61,13 +61,14 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
         /// <summary>
         /// Метод загрузки изделтй Load
         /// </summary>
-        public async void Load()
+        public async Task Load()
         {
-          //  ID_user = Preferences.Default.Get("UserID", 0);
-            await LoadGoods();
-            Date_time = DateTime.Now;
-        
-            //  await ImageIsbrannoeLoad();
+
+            await Task.Run(async() =>
+            {
+                await LoadGoods();
+                Date_time = DateTime.Now;
+            });
         }
       
         /// <summary>
@@ -76,29 +77,18 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
         /// <returns></returns>
         private async Task<bool> LoadGoods()
         {
-            // Строка запроса
+
             string
                 sql = "SELECT * FROM goods";
 
-            // Объявление переменной на основе класс подключения:
-            // >    Connector conn
-            // Инициализация переменной:
-            // >    = new Connector()
 
 
             ConnectBD con = new ConnectBD();
-
-            // Объявление объекта команды:
-            // >    MySqlCommand cmd
-            // Инициализация объекта команды:
-            // >    new MySqlCommand(sql, conn.GetConn());
             MySqlCommand
                 cmd = new MySqlCommand(sql, con.GetConnBD());
 
-            // Синхронное подключение к БД
             await con.GetConnectBD();
 
-            // Объявление и инициалзиация метода асинрхонного чтения данных из бд
             MySqlDataReader
                  reader = await cmd.ExecuteReaderAsync();
             Goodslist = new ObservableCollection<Goods>();
@@ -116,14 +106,14 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
             // Цикл while выполняется, пока есть строки для чтения из БД
             while (await reader.ReadAsync())
             {
-
                 // Добавление элемента в коллекцию списка товаров на основе класса (Экземпляр класс создается - объект)
+
                 Goodslist.Add(new Goods()
                 {
                     ID_goods = Convert.ToInt32(reader["ID_goods"]),
                     Name = reader["Name"].ToString(),
                     Price = Convert.ToSingle(reader["Price"]),
-                    Image = reader["ImageGood"].ToString(),
+                    Image = new FileBase().GetShareableImageLink(reader["ImageGood"].ToString()),
                     Price_with_discount = Convert.ToSingle(reader["Price_with_discount"]),
                     Discount = Convert.ToInt32(reader["Discount"]),
                     V_nalichii = Convert.ToInt32(reader["V_nalichii"]),

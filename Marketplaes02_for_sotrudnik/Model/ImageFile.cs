@@ -43,6 +43,17 @@ namespace Marketplaes02_for_sotrudnik.Model
             }
         }
 
+        private string _linkimageBD;
+        public string linkimageBD
+        {
+            get => _linkimageBD;
+            set
+            {
+                _linkimageBD = value;
+                OnPropertyChanged("linkimageBD");
+            }
+        }
+
         private int _valueFileUpload;
         public int valueFileUpload
         {

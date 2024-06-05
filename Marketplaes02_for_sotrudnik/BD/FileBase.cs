@@ -4,19 +4,18 @@ using System.IO;
 using System.Net;
 using System.Net.Mime;
 using System.Windows.Media.Imaging;
+using System.Windows;
 
 namespace Marketplaes02_for_sotrudnik.BD
 {
-    public class FileBase 
+    public class FileBase
     {
         private string _host;
         private int _port;
         private string _username;
         private string _password;
 
-
-
-
+     //   ftp://37.18.74.116:21/
         public FileBase()
         {
             _host = "37.18.74.116";
@@ -34,40 +33,34 @@ namespace Marketplaes02_for_sotrudnik.BD
         }
 
 
-        public void UploadFile(string localPath, string remotePath)
+        public async Task UploadFileAsync(string localPath, string remotePath)
         {
-
-            FtpWebRequest
-                request = (FtpWebRequest)WebRequest.Create("ftp://" + _host + ":" + _port + "/" + remotePath);
-
-            request.Method = WebRequestMethods.Ftp.UploadFile;
-            request.Credentials = new NetworkCredential(_username, _password);
-
-            byte[]
-                buffer = new byte[1024];
-            FileStream
-                localStream = File.OpenRead(localPath);
-            Stream
-                requestStream = request.GetRequestStream();
-            long
-                totalBytesUploaded = 0;
-            int
-                bytesRead;
-
-            System.Timers.Timer
-                timer = new System.Timers.Timer(100); // Интервал обновления в миллисекундах
-
-            timer.Start();
-
-            while ((bytesRead = localStream.Read(buffer, 0, buffer.Length)) > 0 )
+            try
             {
-                requestStream.Write(buffer, 0, bytesRead);
-                totalBytesUploaded += bytesRead;
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create("ftp://" + _host + ":" + _port + "/" + remotePath);
+                request.Method = WebRequestMethods.Ftp.UploadFile;
+                request.Credentials = new NetworkCredential(_username, _password);
+
+                byte[] buffer = new byte[1024];
+                FileStream localStream = File.OpenRead(localPath);
+
+                Stream requestStream = await request.GetRequestStreamAsync();
+
+                int bytesRead;
+                while ((bytesRead = await localStream.ReadAsync(buffer, 0, buffer.Length)) > 0)
+                {
+                    await requestStream.WriteAsync(buffer, 0, bytesRead);
+                }
+            }
+            catch (WebException ex)
+            {
+
+                MessageBox.Show("Ошибка: " + ex.Message);
             }
 
-            timer.Stop();
-            requestStream.Close();
+
         }
+
 
         public async Task DownloadFileAsync(string remotePath, string localPath)
         {
@@ -91,7 +84,7 @@ namespace Marketplaes02_for_sotrudnik.BD
             System.Timers.Timer timer = new System.Timers.Timer(100); // Интервал обновления в миллисекундах
             timer.Start();
 
-            while ((bytesRead = responseStream.Read(buffer, 0, buffer.Length)) > 0 )
+            while ((bytesRead = responseStream.Read(buffer, 0, buffer.Length)) > 0)
             {
                 localStream.Write(buffer, 0, bytesRead);
                 totalBytesDownloaded += bytesRead;
@@ -99,6 +92,14 @@ namespace Marketplaes02_for_sotrudnik.BD
 
             timer.Stop();
             localStream.Close();
+        }
+
+        public string GetShareableImageLink(string remotePath)
+        {
+            string
+                shareLink = "ftp://" + _username + ":" + _password + "@" + _host + ":" + _port + "/Bulat_files/" + WebUtility.UrlEncode(remotePath);
+
+            return shareLink;
         }
     }
 }

@@ -210,7 +210,7 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
 
             if (!IsValidText(Name) && !IsValidText(Price) &&
             !IsValidText(SelectedKategoriya) && !IsValidText(Description)
-              && !IsValidText(Discount) && !IsValidText(V_nalichii))
+              && !IsValidText(V_nalichii))
             {
 
 
@@ -286,55 +286,20 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
         {
             imagesList[imageIndex].IsViviblevalueFileUpload = Visibility.Visible;
             imagesList[imageIndex].valueFileUpload = 20;
-     //   https://oauth.yandex.ru/authorize?response_type=token&client_id=<идентификатор_приложения>
-        //    See https://tech.yandex.ru/oauth/
-            var Tokenapi = new DiskHttpApi("y0_AgAAAAAhuR-GAAvCBgAAAAEEZT7EAADinuaiQQJNYZODkddcTxQMEi9Zfw");
-            imagesList[imageIndex].valueFileUpload = 40;
-            var link = await Tokenapi.Files.GetUploadLinkAsync("/Диплом_Файлы/" + Path.GetFileName(FilePath), overwrite: true);
-            var fs = System.IO.File.OpenRead(FilePath);
-            imagesList[imageIndex].valueFileUpload = 60;
-            await Tokenapi.Files.UploadAsync(link, fs);
-            imagesList[imageIndex].valueFileUpload = 80;
 
-           
-            var testfolder = await Tokenapi.MetaInfo.GetInfoAsync(new ResourceRequest
-            {
-                Path = "/Диплом_Файлы/" + Path.GetFileName(FilePath)
-
-            });
-
-            //imagesList[imageIndex].valueFileUpload = 100;
-            //var linkfile = await Tokenapi.Files.GetDownloadLinkAsync(testfolder.Embedded.Items[0].Path);
-            //imagesList[imageIndex].linkimage = linkfile.Href;
-
-            //var folderURL = testfolder.PublicUrl;
-            //string linkfile = folderURL + "/" + testfolder.Embedded.Items[0].Name;
-
-            //var linkfile = testfolder.Preview;
-            //imagesList[imageIndex].linkimage = linkfile;
+                FileBase fileBase = new FileBase();
+                imagesList[imageIndex].valueFileUpload = 40;
+                await fileBase.UploadFileAsync(FilePath, "Bulat_files/" + Path.GetFileName(FilePath));
+                imagesList[imageIndex].valueFileUpload = 60;
+                imagesList[imageIndex].linkimage = fileBase.GetShareableImageLink(Path.GetFileName(FilePath));
+                imagesList[imageIndex].valueFileUpload = 80;
+                imagesList[imageIndex].linkimageBD = Path.GetFileName(FilePath);
+                imagesList[imageIndex].IsViviblevalueFileUpload = Visibility.Collapsed;
+                OnPropertyChanged("imagesList");
 
 
-
-
-      
             imagesList[imageIndex].valueFileUpload = 100;
-            //var linkfile = await Tokenapi.Files.GetDownloadLinkAsync(testfolder.Embedded.Items[0].Path);
-            //imagesList[imageIndex].linkimage = linkfile.Href;
 
-            FileBase fileBase = new FileBase();
-            fileBase.UploadFile(FilePath, "Bulat_files/" + Path.GetFileName(FilePath));
-            // byte image = fileBase.GetImgByte("ftp://37.18.74.116/Bulat_files/" + Path.GetFileName(FilePath));
-            imagesList[imageIndex].linkimage = "ftp://37.18.74.116/Bulat_files/" + Path.GetFileName(FilePath);
-           // imagesList[imageIndex].linkimage = image1;
-            //await fileBase.DownloadFileAsync("Bulat_files/" + Path.GetFileName(FilePath), "C:\\Users\\Admin\\source\\" +
-            //    Path.GetFileName(FilePath));
-
-            //  imagesList[imageIndex].linkimage = ;
-
-
-
-            imagesList[imageIndex].IsViviblevalueFileUpload = Visibility.Collapsed;
-            OnPropertyChanged("imagesList");
             return true;
 
         }
@@ -381,7 +346,7 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
             string sql = "INSERT INTO `imagesgoods` (`ID_goods`, `Image`) VALUES (@ID_goods, @Image)";
             MySqlCommand cmd = new MySqlCommand(sql, con.GetConnBD());
             cmd.Parameters.Add(new MySqlParameter("@ID_goods", id_goods_image));
-            cmd.Parameters.Add(new MySqlParameter("@Image", imagesList[i].linkimage));
+            cmd.Parameters.Add(new MySqlParameter("@Image", imagesList[i].linkimageBD));
             await con.GetConnectBD();
             cmd.ExecuteNonQuery();
             await con.GetCloseBD();

@@ -51,7 +51,7 @@
 
         </Grid>
 
-        <DataGrid  x:Name="dataGridGoods" Grid.Row="1" PreviewKeyDown="DataGrid_PreviewKeyDown" ItemsSource="{Binding Goodslist}" 
+        <DataGrid VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"  x:Name="dataGridGoods" Grid.Row="1" PreviewKeyDown="DataGrid_PreviewKeyDown" ItemsSource="{Binding Goodslist}" 
 MouseDoubleClick="DataGrid_MouseDoubleClick" IsReadOnly="True"  AutoGenerateColumns="False">
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
@@ -61,13 +61,15 @@ MouseDoubleClick="DataGrid_MouseDoubleClick" IsReadOnly="True"  AutoGenerateColu
             <DataGrid.Columns>
 
                 <DataGridTextColumn   Header="ID-Товара" Binding="{Binding ID_goods}" />
-                <DataGridTemplateColumn Header="Фото">
+                
+                
+                <!--<DataGridTemplateColumn Header="Фото">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Image Source="{Binding Image}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                </DataGridTemplateColumn>-->
 
                 <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Цена" Binding="{Binding Price,StringFormat=' {0} ₽'}" />

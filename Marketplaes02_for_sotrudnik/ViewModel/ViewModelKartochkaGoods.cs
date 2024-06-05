@@ -2,6 +2,7 @@
 using Marketplaes02_for_sotrudnik.Model;
 using Microsoft.Win32;
 using MySqlConnector;
+using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
@@ -13,11 +14,14 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
 {
     public class ViewModelKartochkaGoods : KartochkaGoods
     {
+        FileBase fileBase = new FileBase();
         public ViewModelKartochkaGoods(int selectID_goods)
         {
 
             SelectID_goods = selectID_goods;
+
             Load();
+
 
         }
         private int _SelectID_goods;
@@ -81,8 +85,7 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
             Window window = (Window)win;
 
             if (!IsValidText(Name) && !IsValidText(Price)
-                    && !IsValidText(Description)
-                       && !IsValidText(Discount) && !IsValidText(V_nalichii))
+                    && !IsValidText(Description) && !IsValidText(V_nalichii))
             {
 
 
@@ -199,11 +202,16 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
                 OnPropertyChanged("imagesList");
             }
         }
-        public async void Load()
+        public async Task Load()
         {
-            await Load_id_kategoriyaList();
-            await GoodsSelectSQL(SelectID_goods);
-            await ImagesGoodsSelectSQL(SelectID_goods);
+            await Task.Run(async () =>
+            {
+                await ImagesGoodsSelectSQL(SelectID_goods);
+                await Load_id_kategoriyaList();
+                await GoodsSelectSQL(SelectID_goods);
+               
+            });
+
 
         }
 
@@ -249,14 +257,6 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
                 // await Task.Delay(1000);
             }
             SelectedKategoriya = kategoriyaList.FirstOrDefault(k => k.Name == selectedNameKategoriya);
-            OnPropertyChanged("SelectedKategoriya");
-            OnPropertyChanged("ID_goods");
-            OnPropertyChanged("Name");
-            OnPropertyChanged("Price");
-            OnPropertyChanged("Description");
-            // OnPropertyChanged("Price_with_discount");
-            OnPropertyChanged("Discount");
-            OnPropertyChanged("V_nalichii");
             await conn.GetCloseBD();
 
             return true;
@@ -293,7 +293,7 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
                 {
                     ID_goods = Convert.ToInt32(reader["ID_goods"]),
                     ImageID = Convert.ToInt32(reader["ImageID"]),
-                    linkimage = reader["Image"].ToString(),
+                    linkimage = fileBase.GetShareableImageLink(reader["Image"].ToString()),
                     IsViviblevalueFileUpload = Visibility.Collapsed,
                 });
 
@@ -315,7 +315,7 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
 
             for (int i = 0; i < control.Count; i++)
             {
-                if (control[i].linkimage == "/Icons/no_photo.jpg")
+                if (control[i].linkimageBD == null && control[i].linkimage == null)
                 {
                     return false;
                 }
@@ -327,7 +327,7 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
         {
 
             ConnectBD con = new ConnectBD();
-            string sql = "UPDATE `goods` SET `Name`=@Name, `Price`=@Price, `id_kategoriya`=@id_kategoriya, `Description`=@Description, `Discount`=@Discount, `V_nalichii`=@V_nalichii WHERE `ID_goods`=@ID_goods";
+            string sql = "UPDATE `goods` SET `Name`=@Name, `Price`=@Price, `id_kategoriya`=@id_kategoriya, `Description`=@Description, `Discount`=@Discount, `V_nalichii`=@V_nalichii, Price_with_discount=@Price_with_discount WHERE `ID_goods`=@ID_goods";
             MySqlCommand cmd = new MySqlCommand(sql, con.GetConnBD());
             cmd.Parameters.Add(new MySqlParameter("@Name", Name));
             cmd.Parameters.Add(new MySqlParameter("@Price", Price));
@@ -335,7 +335,7 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
             cmd.Parameters.Add(new MySqlParameter("@Description", Description));
             cmd.Parameters.Add(new MySqlParameter("@Discount", Discount));
             cmd.Parameters.Add(new MySqlParameter("@V_nalichii", V_nalichii));
-
+            cmd.Parameters.Add(new MySqlParameter("@Price_with_discount", Price_with_discount));
             cmd.Parameters.Add(new MySqlParameter("@ID_goods", SelectID_goods));
             await con.GetConnectBD();
             await cmd.ExecuteNonQueryAsync();
@@ -350,40 +350,34 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
 
         private async void Upload()
         {
-            for (int i = 0; i < imagesList.Count; i++)
+            if (imagesList[0].linkimageBD!=null)
             {
-                await UpdateAddImage(i);
+                for (int i = 0; i < imagesList.Count; i++)
+                {
+                    await UpdateAddImage(i);
+                }
             }
+
         }
 
         public async Task<bool> UploadImage(string FilePath, int imageIndex)
         {
             imagesList[imageIndex].IsViviblevalueFileUpload = Visibility.Visible;
             imagesList[imageIndex].valueFileUpload = 20;
-            //https://oauth.yandex.ru/authorize?response_type=token&client_id=<идентификатор_приложения>
-            //See https://tech.yandex.ru/oauth/
-            var Tokenapi = new DiskHttpApi("y0_AgAAAAAhuR-GAAvCBgAAAAEEZT7EAADinuaiQQJNYZODkddcTxQMEi9Zfw");
+
+
             imagesList[imageIndex].valueFileUpload = 40;
-            var link = await Tokenapi.Files.GetUploadLinkAsync("/Диплом_Файлы/" + Path.GetFileName(FilePath), overwrite: true);
-            var fs = File.OpenRead(FilePath);
+            await fileBase.UploadFileAsync(FilePath, "Bulat_files/" + Path.GetFileName(FilePath));
             imagesList[imageIndex].valueFileUpload = 60;
-            await Tokenapi.Files.UploadAsync(link, fs);
+            imagesList[imageIndex].linkimage = fileBase.GetShareableImageLink(Path.GetFileName(FilePath));
+            imagesList[imageIndex].linkimageBD = Path.GetFileName(FilePath);
             imagesList[imageIndex].valueFileUpload = 80;
-            var testfolder = await Tokenapi.MetaInfo.GetInfoAsync(new ResourceRequest
-            {
-                Path = "/Диплом_Файлы",
-                Limit = 1,
-                Sort = "-created"
-
-
-            });
-            imagesList[imageIndex].valueFileUpload = 100;
-            var linkfile = await Tokenapi.Files.GetDownloadLinkAsync(testfolder.Embedded.Items[0].Path);
-            imagesList[imageIndex].linkimage = linkfile.Href;
-
-
             imagesList[imageIndex].IsViviblevalueFileUpload = Visibility.Collapsed;
             OnPropertyChanged("imagesList");
+
+
+            imagesList[imageIndex].valueFileUpload = 100;
+
             return true;
 
         }
@@ -414,7 +408,7 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
             MySqlCommand cmd = new MySqlCommand(sql, con.GetConnBD());
             cmd.Parameters.Add(new MySqlParameter("@ImageID", imagesList[i].ImageID));
             cmd.Parameters.Add(new MySqlParameter("@ID_goods", SelectID_goods));
-            cmd.Parameters.Add(new MySqlParameter("@Image", imagesList[i].linkimage));
+            cmd.Parameters.Add(new MySqlParameter("@Image", imagesList[i].linkimageBD));
             await con.GetConnectBD();
             cmd.ExecuteNonQuery();
             await con.GetCloseBD();
