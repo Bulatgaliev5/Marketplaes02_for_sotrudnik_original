@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -32,33 +33,15 @@ namespace Marketplaes02_for_sotrudnik.View
             DataContext = new ViewModelKartochkaOrders(selectorder);
         }
 
-        private async void BorderPrisvoitTreckNomer(object sender, MouseButtonEventArgs e)
-        {
-            if (sender is Border boreder && boreder.DataContext is MyOrders order)
-            {
-               bool res =  await SQLUpdateTreckNumber(order.ID_order);
-                if (res)
-                {
-                    MessageBox.Show("Трек номер и статус заказа изменен", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Трек номер и статус заказа не изменен", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-        }
+
         public async Task<bool> SQLUpdateTreckNumber(int ID_Order)
         {
             string selectedValue = ComboBoxStatus.SelectedItem as string;
-            if (!MaskedTextBoxTreckNumber.IsMaskFull || TextBoxTreckNumber.Text == null)
+            if (MaskedTextBoxTreckNumber.Text == "" || TextBoxTreckNumber.Text == "")
             {
                 MaskedTextBoxTreckNumber.Focusable = true;
                 return false;
             }
-
-
-
             else if (selectedValue == "Заказ принят")
             {
 
@@ -81,16 +64,22 @@ namespace Marketplaes02_for_sotrudnik.View
         private async void BorderUpdateStatus(object sender, MouseButtonEventArgs e)
         {
 
-                bool res = await SQLUpdateTreckNumber(SelectOrder);
-                if (res)
-                {
-                    MessageBox.Show("Трек номер и статус заказа изменен", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
-                      this.Close();   
-                 }
-                else
-                {
-                    MessageBox.Show("Трек номер и статус заказа не изменен", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+            bool res = await SQLUpdateTreckNumber(SelectOrder);
+            if (res)
+            {
+                MessageBox.Show("Трек номер и статус заказа изменен", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Трек номер и статус заказа не изменен", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+
+        private void ValidNumber(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = Regex.IsMatch(e.Text, @"[^0-9.]+");
         }
     }
 }

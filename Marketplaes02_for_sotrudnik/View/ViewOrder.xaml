@@ -16,7 +16,7 @@
 
         <Grid VerticalAlignment="Center" HorizontalAlignment="Stretch"  Grid.Row="0">
             <Grid.Background>
-                <ImageBrush ImageSource="\Icons\fone.png"/>
+                <ImageBrush  ImageSource="\Icons\fone.png"/>
             </Grid.Background>
             <StackPanel HorizontalAlignment="Left" >
                 <Label HorizontalAlignment="Center"  Foreground="Black" FontSize="30"  Content="Список заказов"/>
@@ -26,7 +26,7 @@
             <StackPanel  HorizontalAlignment="Right" Orientation="Horizontal">
                 <Border Margin="5" Width="210" HorizontalAlignment="Right" Style="{DynamicResource BorderButton}" MouseLeftButtonDown="BorderUpdate">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="\Icons\zagruzka.png" Margin="0"/>
+                        <Image Style="{DynamicResource Imagebut}" Source="\Icons\zagruzka.png" Margin="0"/>
                         <Label Margin="5,0,5,0" Style="{DynamicResource LabelButton}" Content="Обновить" 
         HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                     </StackPanel>
@@ -41,7 +41,7 @@
                 <TabItem Header="Все заказы">
                     <DataGrid Grid.Row="1"  Width="auto"
                               ItemsSource="{Binding MyOrderslist, UpdateSourceTrigger=PropertyChanged}" 
-IsReadOnly="True"  AutoGenerateColumns="False" MinHeight="30" RowHeaderWidth="30" >
+IsReadOnly="True"  AutoGenerateColumns="False">
 
            <DataGrid.Columns>
 
@@ -63,7 +63,7 @@ IsReadOnly="True"  AutoGenerateColumns="False" MinHeight="30" RowHeaderWidth="30
                 <TabItem Header="Ожидают обработки">
                     <DataGrid Grid.Row="1"  Width="auto"
                               ItemsSource="{Binding MyOrderslist, UpdateSourceTrigger=PropertyChanged}" 
-IsReadOnly="True"  AutoGenerateColumns="False" MinHeight="30" RowHeaderWidth="30" >
+IsReadOnly="True"  AutoGenerateColumns="False"  >
 
                         <DataGrid.Columns>
 
@@ -80,7 +80,7 @@ IsReadOnly="True"  AutoGenerateColumns="False" MinHeight="30" RowHeaderWidth="30
                                         <Border  Width="240" Margin="5" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch" Style="{DynamicResource BorderButton}" MouseLeftButtonDown="BorderObrabotatOrder">
 
                                             <StackPanel Orientation="Horizontal">
-                                                <Image Source="\Icons\obrabotka.png" Margin="0"/>
+                                                <Image Style="{DynamicResource Imagebut}" Source="\Icons\obrabotka.png" Margin="0"/>
                                                 <Label Margin="5,0,5,0" Style="{DynamicResource LabelButton}" Content="Обработать заказ" 
                               HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                                             </StackPanel>
@@ -98,7 +98,7 @@ IsReadOnly="True"  AutoGenerateColumns="False" MinHeight="30" RowHeaderWidth="30
                 <TabItem Header="Доставляются">
                     <DataGrid Grid.Row="1"  Width="auto"
                               ItemsSource="{Binding MyOrderslist, UpdateSourceTrigger=PropertyChanged}" 
-IsReadOnly="True"  AutoGenerateColumns="False" MinHeight="30" RowHeaderWidth="30" >
+IsReadOnly="True"  AutoGenerateColumns="False" >
 
                         <DataGrid.Columns>
 
@@ -115,7 +115,7 @@ IsReadOnly="True"  AutoGenerateColumns="False" MinHeight="30" RowHeaderWidth="30
                                         <Border  Width="240" Margin="5" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch" Style="{DynamicResource BorderButton}" MouseLeftButtonDown="BorderObrabotatOrder">
 
                                             <StackPanel Orientation="Horizontal">
-                                                <Image Source="\Icons\obrabotka.png" Margin="0"/>
+                                                <Image Style="{DynamicResource Imagebut}" Source="\Icons\obrabotka.png" Margin="0"/>
                                                 <Label Margin="5,0,5,0" Style="{DynamicResource LabelButton}" Content="Обработать заказ" 
                               HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                                             </StackPanel>
@@ -133,7 +133,7 @@ IsReadOnly="True"  AutoGenerateColumns="False" MinHeight="30" RowHeaderWidth="30
                 <TabItem Header="Архив">
                     <DataGrid Grid.Row="1"  Width="auto"
                               ItemsSource="{Binding MyOrderslist, UpdateSourceTrigger=PropertyChanged}" 
-IsReadOnly="True"  AutoGenerateColumns="False" MinHeight="30" RowHeaderWidth="30" >
+IsReadOnly="True"  AutoGenerateColumns="False" >
 
                         <DataGrid.Columns>
 
@@ -150,7 +150,7 @@ IsReadOnly="True"  AutoGenerateColumns="False" MinHeight="30" RowHeaderWidth="30
                                         <Border  Width="240" Margin="5" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch" Style="{DynamicResource BorderButton}" MouseLeftButtonDown="BorderObrabotatOrder">
 
                                             <StackPanel Orientation="Horizontal">
-                                                <Image Source="\Icons\obrabotka.png" Margin="0"/>
+                                                <Image Style="{DynamicResource Imagebut}" Source="\Icons\obrabotka.png" Margin="0"/>
                                                 <Label Margin="5,0,5,0" Style="{DynamicResource LabelButton}" Content="Посмотреть" 
                               HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                                             </StackPanel>

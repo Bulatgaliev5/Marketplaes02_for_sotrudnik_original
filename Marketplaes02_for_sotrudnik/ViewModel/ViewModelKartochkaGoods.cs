@@ -85,7 +85,7 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
             Window window = (Window)win;
 
             if (!IsValidText(Name) && !IsValidText(Price)
-                    && !IsValidText(Description) && !IsValidText(V_nalichii))
+                    && !IsValidText(Description) && !IsValidText(V_nalichii) && Price != 0 && Price != V_nalichii)
             {
 
 
@@ -95,14 +95,14 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
                     if (IsValidIList(imagesList))
                     {
                         Upload();
-                        MessageBox.Show("Данные сохранились", "Информация", MessageBoxButton.OK
+                        MessageBox.Show("Информация о товаре успешно изменен", "Информация", MessageBoxButton.OK
                        , MessageBoxImage.Information);
 
                         CloseWindow(window);
                     }
                     else
                     {
-                        MessageBox.Show("Загрузите все изображения", "Информация", MessageBoxButton.OK
+                        MessageBox.Show("Загрузите все изображения!", "Информация", MessageBoxButton.OK
                        , MessageBoxImage.Information);
                     }
 
@@ -111,7 +111,7 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
             }
             else
             {
-                MessageBox.Show("Заполните все поля ", "Информация", MessageBoxButton.OK
+                MessageBox.Show("Заполните все поля!", "Информация", MessageBoxButton.OK
                     , MessageBoxImage.Information);
             }
         }
@@ -144,7 +144,7 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
                 if (res)
                 {
 
-                    MessageBox.Show("Сохранен изображения", "Информация", MessageBoxButton.OK
+                    MessageBox.Show("Изображения успешно загрузилось", "Информация", MessageBoxButton.OK
                        , MessageBoxImage.Information);
                 }
 

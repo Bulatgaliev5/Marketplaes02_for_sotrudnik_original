@@ -1,4 +1,4 @@
-﻿using ActiproSoftware.Windows.Extensions;
+﻿
 using Marketplaes02_for_sotrudnik.BD;
 using Marketplaes02_for_sotrudnik.Model;
 using MySqlConnector;
@@ -85,16 +85,7 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
                 OnPropertyChanged("vivibleUpdateBorder");
             }
         }
-        private string _NameBorberText;
-        public string NameBorberText
-        {
-            get => _NameBorberText;
-            set
-            {
-                _NameBorberText = value;
-                OnPropertyChanged("NameBorberText");
-            }
-        }
+
         private IList<MyOrder_items> _MyOrder_itemslist;
         public IList<MyOrder_items> MyOrder_itemslist
         {
@@ -136,12 +127,10 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
             StatusList.Add("Заказ в пути");
             StatusList.Add("Заказ доставлен");
             vivibleUpdateBorder = Visibility.Visible;
-            NameBorberText = "Изменить статус заказа и присвоить трек номер";
 
             if (StatusList[0]== "Заказ в пути")
             {
                 StatusList.RemoveAt(1);
-                NameBorberText = "Изменить статус заказа";
             }
             else if (StatusList[0] == "Заказ доставлен")
             {
@@ -282,16 +271,6 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
 
             }
 
-            OnPropertyChanged("ID_order");
-            OnPropertyChanged("Total_Count");
-            OnPropertyChanged("User_Nickname");
-            OnPropertyChanged("User_Name");
-            OnPropertyChanged("Adres_Dostavki");
-            OnPropertyChanged("Order_date");
-            OnPropertyChanged("Total_Price_with_discount");
-            OnPropertyChanged("Track_number");
-            OnPropertyChanged("Status");
-            OnPropertyChanged("User_Number");
 
 
             await con.GetCloseBD();

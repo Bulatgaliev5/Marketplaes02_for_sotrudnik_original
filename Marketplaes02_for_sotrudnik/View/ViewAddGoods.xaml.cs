@@ -12,6 +12,8 @@ using YandexDisk.Client.Http;
 using YandexDisk.Client;
 using YandexDisk.Client.Clients;
 using YandexDisk.Client.Protocol;
+using System.Text.RegularExpressions;
+using System.Windows.Input;
 
 
 namespace Marketplaes02_for_sotrudnik.View
@@ -26,6 +28,11 @@ namespace Marketplaes02_for_sotrudnik.View
         {
             InitializeComponent();
             DataContext = new ViewModelAddGoods();
+        }
+
+        private void ValidNumber(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = Regex.IsMatch(e.Text, @"[^0-9.]+");
         }
 
     }

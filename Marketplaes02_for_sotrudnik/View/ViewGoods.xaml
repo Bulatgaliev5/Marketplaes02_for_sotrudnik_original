@@ -7,13 +7,13 @@
       mc:Ignorable="d"  Background="Azure"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ViewGoods"
-      xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
+      
       >
 
     <Grid>
         <Grid.RowDefinitions>
                 <RowDefinition Height="90"/>
-                <RowDefinition/>
+                <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid VerticalAlignment="Center" HorizontalAlignment="Stretch"  Grid.Row="0">
@@ -27,21 +27,21 @@
             <StackPanel  HorizontalAlignment="Right" Orientation="Horizontal">
                 <Border Margin="5" Width="210" HorizontalAlignment="Right" Style="{DynamicResource BorderButton}" MouseLeftButtonDown="BorderUpdate">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="\Icons\zagruzka.png" Margin="0"/>
+                        <Image Style="{DynamicResource Imagebut}" Source="\Icons\zagruzka.png" Margin="0"/>
                         <Label Margin="5,0,5,0" Style="{DynamicResource LabelButton}" Content="Обновить" 
                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                     </StackPanel>
                 </Border>
                 <Border Margin="5" Width="210" HorizontalAlignment="Right" Style="{DynamicResource BorderButton}" MouseLeftButtonDown="BorderDeleteGoods">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/Icons/deletegood.png" Margin="0"/>
+                        <Image Style="{DynamicResource Imagebut}" Source="/Icons/deletegood.png" Margin="0"/>
                         <Label Margin="5,0,5,0" Style="{DynamicResource LabelButton}" Content="Удалить товар" 
                                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                     </StackPanel>
                 </Border>
                 <Border Margin="5" Width="210" HorizontalAlignment="Right" Style="{DynamicResource BorderButton}" MouseLeftButtonDown="Add">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/Icons/add_zakaz.png" Margin="0"/>
+                        <Image Style="{DynamicResource Imagebut}" Source="/Icons/add_zakaz.png" Margin="0"/>
                         <Label Margin="5,0,5,0" Style="{DynamicResource LabelButton}" Content="Добавить товар" 
                                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                     </StackPanel>
@@ -50,7 +50,9 @@
             </StackPanel>
 
         </Grid>
+        
 
+        
         <DataGrid VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"  x:Name="dataGridGoods" Grid.Row="1" PreviewKeyDown="DataGrid_PreviewKeyDown" ItemsSource="{Binding Goodslist}" 
 MouseDoubleClick="DataGrid_MouseDoubleClick" IsReadOnly="True"  AutoGenerateColumns="False">
             <DataGrid.RowStyle>
@@ -60,22 +62,22 @@ MouseDoubleClick="DataGrid_MouseDoubleClick" IsReadOnly="True"  AutoGenerateColu
             </DataGrid.RowStyle>
             <DataGrid.Columns>
 
-                <DataGridTextColumn   Header="ID-Товара" Binding="{Binding ID_goods}" />
-                
-                
-                <!--<DataGridTemplateColumn Header="Фото">
+                <DataGridTextColumn Width="Auto"   Header="ID-Товара" Binding="{Binding ID_goods}" />
+
+
+                <!--<DataGridTemplateColumn Width="Auto" Header="Фото">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Source="{Binding Image}"/>
+                            <Image Style="{DynamicResource Imagebut}"  Source="{Binding Image}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>-->
 
-                <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Цена" Binding="{Binding Price,StringFormat=' {0} ₽'}" />
-                <DataGridTextColumn Header="Скидка" Binding="{Binding Discount,StringFormat=' - {0} %'}" />
-                <DataGridTextColumn Header="Цена со скидкой" Binding="{Binding Price_with_discount,StringFormat=' {0} ₽'}" />
-                <DataGridTextColumn Header="В наличии" Binding="{Binding V_nalichii,StringFormat=' {0} шт.'}" />
+                <DataGridTextColumn Width="Auto" Header="Наименование" Binding="{Binding Name}" />
+                <DataGridTextColumn Width="Auto" Header="Цена" Binding="{Binding Price,StringFormat=' {0} ₽'}" />
+                <DataGridTextColumn Width="Auto" Header="Скидка" Binding="{Binding Discount,StringFormat=' - {0} %'}" />
+                <DataGridTextColumn Width="Auto" Header="Цена со скидкой" Binding="{Binding Price_with_discount,StringFormat=' {0} ₽'}" />
+                <DataGridTextColumn Width="Auto" Header="В наличии" Binding="{Binding V_nalichii,StringFormat=' {0} шт.'}" />
             </DataGrid.Columns>
         </DataGrid>
 

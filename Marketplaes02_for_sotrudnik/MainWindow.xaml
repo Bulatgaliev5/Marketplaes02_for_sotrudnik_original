@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:Marketplaes02_for_sotrudnik"
         mc:Ignorable="d"  Background="Azure"
         MinHeight="600" MinWidth="1100" WindowState="Maximized"
-        Title="MainWindow" Height="600" Width="1100">
-
+        Title="Приложение" Height="600" Width="1100"
+        WindowStartupLocation="CenterScreen"
+        >
+        
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -20,28 +22,20 @@
 
         <Grid HorizontalAlignment="Stretch">
             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Style="{DynamicResource StackPanelMenuItem}">
-                <!--<Border Grid.Row="0" Style="{DynamicResource BorderMenuItem}">
-                <Label Content="Главная" VerticalContentAlignment="Center" Style="{DynamicResource LabelMenuItem}"/>
-            </Border>-->
-            <Border Grid.Row="0" Style="{DynamicResource BorderMenuItem}" MouseLeftButtonDown="OpenPageGoods">
-                <Label Content="Товары" VerticalContentAlignment="Center" Style="{DynamicResource LabelMenuItem}"/>
-            </Border>
-            <Border Grid.Row="0" Style="{DynamicResource BorderMenuItem}" MouseLeftButtonDown="OpenPageOrders">
-                <Label Content="Заказы" VerticalContentAlignment="Center" Style="{DynamicResource LabelMenuItem}"/>
-            </Border>
+                <Border Grid.Row="0" Style="{DynamicResource BorderMenuItem}" MouseLeftButtonDown="OpenPageGoods">
+                    <Label Content="Товары" VerticalContentAlignment="Center" Style="{DynamicResource LabelMenuItem}"/>
+                </Border>
+                <Border Grid.Row="0" Style="{DynamicResource BorderMenuItem}" MouseLeftButtonDown="OpenPageOrders">
+                    <Label Content="Заказы" VerticalContentAlignment="Center" Style="{DynamicResource LabelMenuItem}"/>
+                </Border>
 
-        </StackPanel>
+            </StackPanel>
             <Border Margin="15" HorizontalAlignment="Right" Grid.Row="0" Style="{DynamicResource BorderMenuItem}" MouseLeftButtonDown="Exit">
                 <Label Content="Выход" VerticalContentAlignment="Center" Style="{DynamicResource LabelMenuItem}"/>
             </Border>
         </Grid>
-
-
-
         <Grid Margin="15,0,15,0"  Grid.Row="1" Grid.Column="1">
             <Frame Source="/View/ViewGoods.xaml" x:Name="Frame1" NavigationUIVisibility="Hidden"/>
-
-
         </Grid>
     </Grid>
 </Window>

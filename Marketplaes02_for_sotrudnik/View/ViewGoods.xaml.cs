@@ -98,7 +98,7 @@ namespace Marketplaes02_for_sotrudnik.View
 
         private async void BorderDeleteGoods(object sender, MouseButtonEventArgs e)
         {
-            if (dataGridGoods.SelectedItems.Count>0)
+            if (dataGridGoods.SelectedItems.Count > 0)
             {
                 var selectedItems = new List<Goods>(dataGridGoods.SelectedItems.Cast<Goods>());
                 if (MessageBox.Show(
@@ -109,20 +109,24 @@ namespace Marketplaes02_for_sotrudnik.View
                 foreach (var item in selectedItems)
                 {
 
-                   
+
                     if (!await GoodsDeleteSQL(item.ID_goods))
                     {
                         MessageBox.Show("Данный товар не удален", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
-                    
-                   
+
+
 
                 }
                 MessageBox.Show("Данный товар удален", "Успешно!", MessageBoxButton.OK, MessageBoxImage.Information);
                 Update();
             }
-             
+            else
+            {
+                MessageBox.Show("Выберите сначало строку для удаления", "Сообщения!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
 
         }
 

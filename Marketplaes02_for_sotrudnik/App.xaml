@@ -7,8 +7,8 @@
     <Application.Resources>
 
         <Style TargetType="Image">
-            <Setter Property="Width" Value="35"/>
-            <Setter Property="Height" Value="35"/>
+            <Setter Property="Stretch" Value="Uniform"/>
+
         </Style>
         <Style TargetType="Image" x:Key="ImageTovari">
             <Setter Property="Width" Value="200"/>
@@ -164,13 +164,13 @@
         <Style TargetType="Border" x:Key="BorderSelection" >
             <Setter Property="VerticalAlignment" Value="Stretch"/>
             <Setter Property="Width" Value="auto"/>
-            <Setter Property="Background" Value="DeepSkyBlue"/>
+            <Setter Property="Background" Value="LightCyan"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="BorderThickness" Value="0.5"/>
+            <Setter Property="BorderThickness" Value="1.5"/>
             <Setter Property="BorderBrush" Value="DeepSkyBlue"/>
             <Setter Property="CornerRadius" Value="15"/>
-            <Setter Property="Margin" Value="5,0,5,0"/>
-            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="10,5,10,5"/>
+            <Setter Property="Padding" Value="10"/>
             
         </Style>
 
@@ -186,14 +186,23 @@
             <Setter Property="Padding" Value="0"/>
             <Setter Property="CornerRadius"  Value="15" />
             <Setter Property="Background"  Value="Snow" />
+            <Setter Property="BorderThickness" Value="1.5"/>
+            <Setter Property="BorderBrush" Value="DeepSkyBlue"/>
+            <Setter Property="Height" Value="100"/>
+  
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        </Style>
+        <Style TargetType="Border" x:Key="BorderImageGoodGlav" BasedOn="{StaticResource BorderImageGood}">
+            <Setter Property="Width" Value="auto"/>
+            <Setter Property="Height" Value="330"/>
         </Style>
 
 
         <Style TargetType="Grid" x:Key="GridImagelist">
-            <Setter Property="Background" Value="DeepSkyBlue"/>
+            <Setter Property="Background" Value="LightCyan"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="DeepSkyBlue"/>
+                    <Setter Property="Background" Value="LightCyan"/>
                     <Setter Property="Cursor" Value="Hand"/>
                 </Trigger>
             </Style.Triggers>
@@ -214,7 +223,10 @@
         <Style TargetType="Page">
             <Setter Property="Background" Value="Azure"/>
         </Style>
-
+        <Style TargetType="Image" x:Key="Imagebut">
+            <Setter Property="Width" Value="35"/>
+            <Setter Property="Height" Value="35"/>
+        </Style>
     </Application.Resources>
     
 </Application>
