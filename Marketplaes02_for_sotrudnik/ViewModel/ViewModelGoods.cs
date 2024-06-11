@@ -113,7 +113,7 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
                     ID_goods = Convert.ToInt32(reader["ID_goods"]),
                     Name = reader["Name"].ToString(),
                     Price = Convert.ToSingle(reader["Price"]),
-                    Image = new FileBase().GetShareableImageLink(reader["ImageGood"].ToString()),
+                    Image = await new  FileBase().GetShareableImageLink(reader["ImageGood"].ToString()),
                     Price_with_discount = Convert.ToSingle(reader["Price_with_discount"]),
                     Discount = Convert.ToInt32(reader["Discount"]),
                     V_nalichii = Convert.ToInt32(reader["V_nalichii"]),

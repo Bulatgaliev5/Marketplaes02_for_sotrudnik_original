@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Marketplaes02_for_sotrudnik.View"
       mc:Ignorable="d"  Background="Azure"
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ViewOrder">
+      Title="Все заказы">
 
     <Grid>
         <Grid.RowDefinitions>

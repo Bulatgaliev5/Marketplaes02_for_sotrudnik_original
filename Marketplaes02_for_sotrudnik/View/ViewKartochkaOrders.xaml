@@ -7,7 +7,7 @@
         mc:Ignorable="d"  Background="Azure" MinHeight="600" MinWidth="900"
               xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         WindowStartupLocation="CenterScreen" 
-        Title="ViewKartochkaOrders" Height="auto" Width="900">
+        Title="Заказ" Height="auto" Width="900">
     <Grid VerticalAlignment="Stretch">
 
 
@@ -72,17 +72,20 @@
                               />
                                 <!--<TextBox  Margin="0,5,0,0" FontSize="18" Text="{Binding Track_number,UpdateSourceTrigger=PropertyChanged}"/>-->
                             </StackPanel>
+                            
                         </StackPanel>
                     </Border>
+
+
                 </StackPanel>
                     <StackPanel Grid.Column="1">
                         
                     <Border Height="auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  CornerRadius="15" BorderBrush="Black" BorderThickness="1"
                     Margin="15"  Padding="10" >
-                        <ScrollViewer Height="450" Width="auto">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="450" Width="auto">
                             <StackPanel>
                             <StackPanel  Margin="10,20,0,0" Orientation="Horizontal">
-                                <Image  Source="/Icons/sostav_zakaza.png"/>
+                                    <Image Style="{DynamicResource Imagebut}"  Source="/Icons/sostav_zakaza.png"/>
                                 <TextBlock Margin="10,0,0,0"  FontSize="20"  Text="Состав заказа"/>
                             </StackPanel>
 
@@ -117,8 +120,9 @@
                     </StackPanel>
 
 
-                </Grid>
-                <Border Grid.ColumnSpan="2"  Visibility="{Binding vivibleUpdateBorder}" Width="auto" Margin="5" VerticalAlignment="Stretch" 
+            </Grid>
+
+            <Border Grid.ColumnSpan="2"  Visibility="{Binding vivibleUpdateBorder}" Width="auto" Margin="5" VerticalAlignment="Stretch" 
                         HorizontalAlignment="Center" Style="{DynamicResource BorderButton}" MouseLeftButtonDown="BorderUpdateStatus">
 
                     <StackPanel Orientation="Horizontal">
@@ -128,7 +132,7 @@
                     </StackPanel>
                 </Border>
 
-            </StackPanel>
+        </StackPanel>
 
 
 

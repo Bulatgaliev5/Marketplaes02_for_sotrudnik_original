@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Marketplaes02_for_sotrudnik.View"
-
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
         mc:Ignorable="d" MinHeight="600" MinWidth="900"
         xmlns:xrpb="http://XamlRadialProgressBar/DotNet"
         Title="{Binding SelectID_goods,StringFormat='Изменение ID_товара {0}', UpdateSourceTrigger=PropertyChanged}"  WindowStartupLocation="CenterScreen"
@@ -20,6 +20,7 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="1" >
+                   
                     <Border   HorizontalAlignment="Stretch" Style="{DynamicResource BorderSelection}">
                         <StackPanel Orientation="Vertical">
                             <Label Content="Название"/>

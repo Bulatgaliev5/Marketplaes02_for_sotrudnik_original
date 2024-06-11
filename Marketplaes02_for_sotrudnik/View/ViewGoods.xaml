@@ -53,7 +53,8 @@
         
 
         
-        <DataGrid VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"  x:Name="dataGridGoods" Grid.Row="1" PreviewKeyDown="DataGrid_PreviewKeyDown" ItemsSource="{Binding Goodslist}" 
+        <DataGrid VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"   
+                  x:Name="dataGridGoods" Grid.Row="1" PreviewKeyDown="DataGrid_PreviewKeyDown" ItemsSource="{Binding Goodslist}" 
 MouseDoubleClick="DataGrid_MouseDoubleClick" IsReadOnly="True"  AutoGenerateColumns="False">
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">

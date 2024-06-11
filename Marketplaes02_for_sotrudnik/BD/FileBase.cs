@@ -93,13 +93,49 @@ namespace Marketplaes02_for_sotrudnik.BD
             timer.Stop();
             localStream.Close();
         }
+        public async Task<BitmapImage> LoadImageFromFtpAsync(string remotePath)
+        {
+            FtpWebRequest
+                request = (FtpWebRequest)WebRequest.Create("ftp://" + _host + ":" + _port + "/Bulat_files/" + remotePath);
 
-        public string GetShareableImageLink(string remotePath)
+            request.Method = WebRequestMethods.Ftp.DownloadFile;
+            request.Credentials = new NetworkCredential(_username, _password);
+
+            BitmapImage
+                bitmapImage = new BitmapImage();
+
+            try
+            {
+                FtpWebResponse
+                    response = (FtpWebResponse)await request.GetResponseAsync();
+                Stream
+                    responseStream = response.GetResponseStream();
+                MemoryStream
+                    memoryStream = new MemoryStream();
+
+                await responseStream.CopyToAsync(memoryStream);
+                memoryStream.Position = 0;
+
+                bitmapImage.BeginInit();
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.StreamSource = memoryStream;
+                bitmapImage.EndInit();
+                bitmapImage.Freeze();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Ошибка при загрузке изображения: " + ex.Message);
+                return null;
+            }
+
+            return bitmapImage;
+        }
+        public async Task<string> GetShareableImageLink(string remotePath)
         {
             string
                 shareLink = "ftp://" + _username + ":" + _password + "@" + _host + ":" + _port + "/Bulat_files/" + WebUtility.UrlEncode(remotePath);
 
-            return shareLink;
+             return shareLink;
         }
     }
 }

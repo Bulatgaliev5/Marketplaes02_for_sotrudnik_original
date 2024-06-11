@@ -98,11 +98,11 @@ namespace Marketplaes02_for_sotrudnik.View
 
         private async void BorderDeleteGoods(object sender, MouseButtonEventArgs e)
         {
-            if (dataGridGoods.SelectedItems.Count > 0)
+            if (dataGridGoods.SelectedItems.Count == 1)
             {
                 var selectedItems = new List<Goods>(dataGridGoods.SelectedItems.Cast<Goods>());
                 if (MessageBox.Show(
-                   string.Format("Вы действительно собираетесь удалить выбранные товары "), "Внимание!",
+                   string.Format("Вы действительно собираетесь удалить выбранный товар "), "Внимание!",
                    MessageBoxButton.YesNo,
                    MessageBoxImage.Warning) != MessageBoxResult.Yes)
                     return;
@@ -120,6 +120,30 @@ namespace Marketplaes02_for_sotrudnik.View
 
                 }
                 MessageBox.Show("Данный товар удален", "Успешно!", MessageBoxButton.OK, MessageBoxImage.Information);
+                Update();
+            }
+            else if (dataGridGoods.SelectedItems.Count > 1)
+            {
+                var selectedItems = new List<Goods>(dataGridGoods.SelectedItems.Cast<Goods>());
+                if (MessageBox.Show(
+                   string.Format("Вы действительно собираетесь удалить выбранные товары в количестве "+ dataGridGoods.SelectedItems.Count+" шт."), "Внимание!",
+                   MessageBoxButton.YesNo,
+                   MessageBoxImage.Warning) != MessageBoxResult.Yes)
+                    return;
+                foreach (var item in selectedItems)
+                {
+
+
+                    if (!await GoodsDeleteSQL(item.ID_goods))
+                    {
+                        MessageBox.Show("Выбранные товары не удалены", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+
+
+
+                }
+                MessageBox.Show("Выбранные товары удалены", "Успешно!", MessageBoxButton.OK, MessageBoxImage.Information);
                 Update();
             }
             else

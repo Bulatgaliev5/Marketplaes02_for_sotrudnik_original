@@ -46,7 +46,7 @@ namespace Marketplaes02_for_sotrudnik.View
             }
             else
             {
-                MessageBox.Show("Заполните все поля ", "Информация", MessageBoxButton.OK
+                MessageBox.Show("Заполните все поля!", "Информация", MessageBoxButton.OK
                     , MessageBoxImage.Information);
                 return false;
             }
@@ -89,7 +89,7 @@ namespace Marketplaes02_for_sotrudnik.View
             }
             while (await readed.ReadAsync())
             {
-                MessageBox.Show("Успешно ", "Сообщение", MessageBoxButton.OK
+                MessageBox.Show("Вы успешно авторизовались", "Сообщение", MessageBoxButton.OK
                 , MessageBoxImage.Information);
             }
 

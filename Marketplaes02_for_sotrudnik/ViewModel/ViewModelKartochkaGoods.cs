@@ -5,6 +5,7 @@ using MySqlConnector;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Security.Policy;
 using System.Windows;
 using System.Windows.Input;
 using YandexDisk.Client.Http;
@@ -94,8 +95,8 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
                 {
                     if (IsValidIList(imagesList))
                     {
-                        Upload();
-                        MessageBox.Show("Информация о товаре успешно изменен", "Информация", MessageBoxButton.OK
+                       await Upload();
+                        MessageBox.Show("Информация о товаре успешно изменено", "Информация", MessageBoxButton.OK
                        , MessageBoxImage.Information);
 
                         CloseWindow(window);
@@ -204,14 +205,10 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
         }
         public async Task Load()
         {
-            await Task.Run(async () =>
-            {
-                await ImagesGoodsSelectSQL(SelectID_goods);
-                await Load_id_kategoriyaList();
-                await GoodsSelectSQL(SelectID_goods);
-               
-            });
-
+    
+            await Load_id_kategoriyaList();
+            await GoodsSelectSQL(SelectID_goods);
+            await Task.Run(() => ImagesGoodsSelectSQL(SelectID_goods));
 
         }
 
@@ -288,18 +285,20 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
             // Цикл while выполняется, пока есть строки для чтения из БД
             while ((await reader.ReadAsync()))
             {
-
+                string filepatch = await fileBase.GetShareableImageLink(reader["Image"].ToString());
+                Uri uri = new Uri(filepatch);
+                string filename = System.IO.Path.GetFileName(uri.LocalPath);
                 imagesList.Add(new ImageFile()
                 {
                     ID_goods = Convert.ToInt32(reader["ID_goods"]),
                     ImageID = Convert.ToInt32(reader["ImageID"]),
-                    linkimage = fileBase.GetShareableImageLink(reader["Image"].ToString()),
+                    linkimage = filepatch,
+                    linkimageBD = filename,
                     IsViviblevalueFileUpload = Visibility.Collapsed,
-                });
+                }); 
 
 
             }
-            OnPropertyChanged("ImagesGoodsList");
 
             await conn.GetCloseBD();
 
@@ -315,7 +314,7 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
 
             for (int i = 0; i < control.Count; i++)
             {
-                if (control[i].linkimageBD == null && control[i].linkimage == null)
+                if (control[i].linkimageBD == null )
                 {
                     return false;
                 }
@@ -348,9 +347,9 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
 
 
 
-        private async void Upload()
+        private async Task Upload()
         {
-            if (imagesList[0].linkimageBD!=null)
+            if (imagesList[0].linkimageBD!= null)
             {
                 for (int i = 0; i < imagesList.Count; i++)
                 {
@@ -369,7 +368,7 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
             imagesList[imageIndex].valueFileUpload = 40;
             await fileBase.UploadFileAsync(FilePath, "Bulat_files/" + Path.GetFileName(FilePath));
             imagesList[imageIndex].valueFileUpload = 60;
-            imagesList[imageIndex].linkimage = fileBase.GetShareableImageLink(Path.GetFileName(FilePath));
+            imagesList[imageIndex].linkimage = await fileBase.GetShareableImageLink(Path.GetFileName(FilePath));
             imagesList[imageIndex].linkimageBD = Path.GetFileName(FilePath);
             imagesList[imageIndex].valueFileUpload = 80;
             imagesList[imageIndex].IsViviblevalueFileUpload = Visibility.Collapsed;

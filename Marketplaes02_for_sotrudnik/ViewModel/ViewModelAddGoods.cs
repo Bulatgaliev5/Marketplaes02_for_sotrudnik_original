@@ -291,7 +291,7 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
                 imagesList[imageIndex].valueFileUpload = 40;
                 await fileBase.UploadFileAsync(FilePath, "Bulat_files/" + Path.GetFileName(FilePath));
                 imagesList[imageIndex].valueFileUpload = 60;
-                imagesList[imageIndex].linkimage = fileBase.GetShareableImageLink(Path.GetFileName(FilePath));
+                imagesList[imageIndex].linkimage = await fileBase.GetShareableImageLink(Path.GetFileName(FilePath));
                 imagesList[imageIndex].valueFileUpload = 80;
                 imagesList[imageIndex].linkimageBD = Path.GetFileName(FilePath);
                 imagesList[imageIndex].IsViviblevalueFileUpload = Visibility.Collapsed;

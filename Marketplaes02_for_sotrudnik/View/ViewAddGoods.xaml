@@ -80,7 +80,7 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
-                                <Border  Grid.Column="0"  Style="{DynamicResource BorderImageGood}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <Border  Grid.Column="0"  Style="{DynamicResource BorderImageGoodGlav}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                     <Border.InputBindings>
                                         <MouseBinding MouseAction="LeftClick" Command="{Binding AddImageCommand}" CommandParameter="0"/>
                                     </Border.InputBindings>
@@ -196,7 +196,7 @@
                             <MouseBinding MouseAction="LeftClick" Command="{Binding AddGoodsCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}"/>
                         </Border.InputBindings>
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="/Icons/save.png" Margin="0"/>
+                            <Image Style="{DynamicResource Imagebut}" Source="/Icons/save.png" Margin="0"/>
                             <Label Margin="5,0,0,0" Style="{DynamicResource LabelButton}" Content="Добавить" 
                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                         </StackPanel>
