@@ -50,6 +50,18 @@ namespace Marketplaes02_for_sotrudnik.BD
         /// Метод возвращения объекта подключения
         /// </summary>
         /// <returns></returns>
-        public MySqlConnection GetConnBD() => con;
+        public MySqlConnection GetConnBD() 
+        {
+            try
+            {
+                return con;
+            }
+            catch (MySqlException ex)
+            {
+
+                MessageBox.Show("Соединение потеряно. Попробуйте попозже или же сообщите администратору: " + ex.Message);
+            }
+            return con;
+        } 
     }
 }

@@ -1,17 +1,11 @@
-﻿
-using Google.Apis.Drive.v3.Data;
-using Marketplaes02_for_sotrudnik.BD;
+﻿using Marketplaes02_for_sotrudnik.BD;
 using Marketplaes02_for_sotrudnik.Model;
 using Microsoft.Win32;
 using MySqlConnector;
 using System.Collections.ObjectModel;
 using System.IO;
-
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
-using YandexDisk.Client.Http;
-using YandexDisk.Client.Protocol;
 
 namespace Marketplaes02_for_sotrudnik.ViewModel
 {

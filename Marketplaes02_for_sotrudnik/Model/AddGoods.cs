@@ -1,5 +1,4 @@
-﻿using Avalonia;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -125,7 +124,7 @@ namespace Marketplaes02_for_sotrudnik.Model
            OnPropertyChanged("Price_with_discount");
         }
         /// <summary>
-        /// Свойства цена
+        /// Свойства Цена
         /// </summary>
         public float Price
         {
@@ -137,6 +136,9 @@ namespace Marketplaes02_for_sotrudnik.Model
                 LoadPrice_with_discount();
             }
         }
+        /// <summary>
+        /// Свойства Цена со скидкой
+        /// </summary>
         public float Price_with_discount
         {
             get => _Price_with_discount;

@@ -88,6 +88,7 @@ namespace Marketplaes02_for_sotrudnik.ViewModel
                 cmd = new MySqlCommand(sql, con.GetConnBD());
 
             await con.GetConnectBD();
+           
 
             MySqlDataReader
                  reader = await cmd.ExecuteReaderAsync();

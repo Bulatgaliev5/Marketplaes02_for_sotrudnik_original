@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using MySqlConnector;
 using Marketplaes02_for_sotrudnik.BD;
-using Blazorise;
 using System.Net.NetworkInformation;
 
 namespace Marketplaes02_for_sotrudnik.ViewModel
